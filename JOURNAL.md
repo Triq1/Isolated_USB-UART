@@ -10,7 +10,7 @@ This is my journal of the design and building process of **Isolated USB_UART**.
 You can view this journal in more detail on **Hack Club Blueprint** [here](https://blueprint.hackclub.com/projects/799).
 
 
-## 10/20/2025 - Schematic Time!  
+## 10/20/2025 7 PM - Schematic Time!  
 
 First schematic design using parts I have on hand.
 
@@ -19,5 +19,16 @@ We use an isolated power converter and a dual channel data isolator and that mak
 The actual USB_UART stuff uses a CH340N. Decoupling is given to each IC, and the DC-DC converter gets a 10 uF cap on each side as specced in its datasheet. Simples!
 
 ![image.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MzY5NiwicHVyIjoiYmxvYl9pZCJ9fQ==--786720ade6e397b5ca28818698c30973153d5c39/image.png)
+  
+
+## 10/20/2025 10 PM - Started Soldering  
+
+Decided to make it on prototyping board rather than an actual PCB to save time. I might do a board later.
+
+Instead of a real USB port, an old cable was chopped and soldered directly. This is a regrettable decision overall, but it does work.
+
+The isolated DC-DC converter was confirmed to work perfectly, and the CH340N enumerates as a COM port (as expected). The isolated data converter is yet to be tested.
+
+![image.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MzcxMiwicHVyIjoiYmxvYl9pZCJ9fQ==--c8094ca25bc6a8a74465254996b72e93dcaba220/image.png)
   
 
