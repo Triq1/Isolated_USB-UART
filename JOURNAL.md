@@ -6,10 +6,6 @@
   ==================================================================
 -->
 
-This is my journal of the design and building process of **Isolated USB_UART**.  
-You can view this journal in more detail on **Hack Club Blueprint** [here](https://blueprint.hackclub.com/projects/799).
-
-
 ## 10/20/2025 7 PM - Schematic Time!  
 
 First schematic design using parts I have on hand.
@@ -31,4 +27,24 @@ The isolated DC-DC converter was confirmed to work perfectly, and the CH340N enu
 
 ![image.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6MzcxMiwicHVyIjoiYmxvYl9pZCJ9fQ==--c8094ca25bc6a8a74465254996b72e93dcaba220/image.png)
   
+
+## 10/25/2025 - Finished Soldering + Final Tests  
+
+Hooked up the isolator chip, and added all the relevant connections to the header. I decided against doing 3V3 support at this stage, just because it was not worth the effort for my use cases.
+
+
+So this how the board looks right now:
+![image.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NTEzMSwicHVyIjoiYmxvYl9pZCJ9fQ==--041eeb5b6dd256b924196e2b5976ff3d36f77fb3/image.png)
+
+
+And here we can see, the UART-USB functionality is working perfectly at 115200 bps:
+![image.png](https://blueprint.hackclub.com/user-attachments/blobs/proxy/eyJfcmFpbHMiOnsiZGF0YSI6NTEzMiwicHVyIjoiYmxvYl9pZCJ9fQ==--896ffb865fab8ff8ef467bf457404e8e2df69a08/image.png)
+
+I have tested it up to 3 Mbps (rated max speed of the CH340) and it has worked without issues.
+
+
+Notes to those wishing to replicate:
+1. Use a proper level shifter solution if you decided to add 3V3 support - I don't think the input levels of the CMT8022 support 3V3 logic. A normal MOSFET-based solution (or even simpler, just use an IC) will give you support down to 1V8 or even lower, and you won't have the high source impedance on the TX line that is otherwise imposed by the resistor divider
+2. To take this a step above cheapo units you find online, add some proper input and output protection. TVS diodes, voltage clamping, preventing TX from being driven are all good ideas.
+3. The rated isolation voltage for the unit I've constructed is... a few handfuls of volts. Not that it doesn't work, because it definitely does, but assembled on a prototyping board it is hard to trust the isolation for actually high voltages. Much better would be designing a PCB and actually watching your creepage/clearances.   
 
